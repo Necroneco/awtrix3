@@ -526,7 +526,7 @@ void MQTTManager_::setup()
         Matrix->onBrightnessCommand(onBrightnessCommand);
         Matrix->onRGBColorCommand(onRGBColorCommand);
         Matrix->setCurrentState(true);
-        Matrix->setBRIGHTNESS(BRIGHTNESS);
+        Matrix->setBrightness(BRIGHTNESS);
 
         HALight::RGBColor color;
         color.isSet = true;
