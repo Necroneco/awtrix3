@@ -542,6 +542,7 @@ void MQTTManager_::setup()
         Indikator1->setName(HAi1Name);
         Indikator1->onStateCommand(onStateCommand);
         Indikator1->onRGBColorCommand(onRGBColorCommand);
+        Indikator1->setEntityCategory("diagnostic");
 
         sprintf(ind2ID, HAi2ID, macStr);
         Indikator2 = new HALight(ind2ID, HALight::RGBFeature);
@@ -549,6 +550,7 @@ void MQTTManager_::setup()
         Indikator2->setName(HAi2Name);
         Indikator2->onStateCommand(onStateCommand);
         Indikator2->onRGBColorCommand(onRGBColorCommand);
+        Indikator2->setEntityCategory("diagnostic");
 
         sprintf(ind3ID, HAi3ID, macStr);
         Indikator3 = new HALight(ind3ID, HALight::RGBFeature);
@@ -556,6 +558,7 @@ void MQTTManager_::setup()
         Indikator3->setName(HAi3Name);
         Indikator3->onStateCommand(onStateCommand);
         Indikator3->onRGBColorCommand(onRGBColorCommand);
+        Indikator3->setEntityCategory("diagnostic");
 
         sprintf(briID, HAbriID, macStr);
         BriMode = new HASelect(briID);
@@ -572,6 +575,7 @@ void MQTTManager_::setup()
         transEffect->setIcon(HAeffectIcon);
         transEffect->setName(HAeffectName);
         transEffect->setState(TRANS_EFFECT, true);
+        transEffect->setEntityCategory("config");
 
         sprintf(btnAID, HAbtnaID, macStr);
         dismiss = new HAButton(btnAID);
@@ -583,22 +587,26 @@ void MQTTManager_::setup()
         doUpdate->setIcon(HAdoUpIcon);
         doUpdate->setName(HAdoUpName);
         doUpdate->onCommand(onButtonCommand);
+        doUpdate->setEntityCategory("diagnostic");
 
         sprintf(transID, HAtransID, macStr);
         transition = new HASwitch(transID);
         transition->setIcon(HAtransIcon);
         transition->setName(HAtransName);
         transition->onCommand(onSwitchCommand);
+        transition->setEntityCategory("config");
 
         sprintf(appID, HAappID, macStr);
         curApp = new HASensor(appID);
         curApp->setIcon(HAappIcon);
         curApp->setName(HAappName);
+        curApp->setEntityCategory("diagnostic");
 
         sprintf(myID, HAIDID, macStr);
         myOwnID = new HASensor(myID);
         myOwnID->setIcon(HAIDIcon);
         myOwnID->setName(HAIDName);
+        myOwnID->setEntityCategory("diagnostic");
 
         sprintf(btnBID, HAbtnbID, macStr);
         nextApp = new HAButton(btnBID);
@@ -647,18 +655,21 @@ void MQTTManager_::setup()
         sprintf(verID, HAverID, macStr);
         version = new HASensor(verID);
         version->setName(HAverName);
+        version->setEntityCategory("diagnostic");
 
         sprintf(sigID, HAsigID, macStr);
         strength = new HASensor(sigID);
         strength->setName(HAsigName);
         strength->setDeviceClass(HAsigClass);
         strength->setUnitOfMeasurement(HAsigUnit);
+        strength->setEntityCategory("diagnostic");
 
         sprintf(upID, HAupID, macStr);
         uptime = new HASensor(upID);
         uptime->setName(HAupName);
         uptime->setDeviceClass(HAupClass);
         uptime->setUnitOfMeasurement("s");
+        uptime->setEntityCategory("diagnostic");
 
         sprintf(btnLID, HAbtnLID, macStr);
         btnleft = new HABinarySensor(btnLID);
@@ -678,11 +689,13 @@ void MQTTManager_::setup()
         ram->setIcon(HAramIcon);
         ram->setName(HAramName);
         ram->setUnitOfMeasurement(HAramUnit);
+        ram->setEntityCategory("diagnostic");
 
         sprintf(ipAddrID, HAipAddrRID, macStr);
         ipAddr = new HASensor(ipAddrID);
         ipAddr->setName(HAipAddrName);
         ipAddr->setIcon(HAipAddrIcon);
+        ipAddr->setEntityCategory("diagnostic");
     }
     else
     {
