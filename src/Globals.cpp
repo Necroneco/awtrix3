@@ -421,7 +421,7 @@ uint32_t WDC_INACTIVE;
 bool BLOCK_NAVIGATION = false;
 bool UPDATE_CHECK = false;
 float GAMMA = 0;
-bool SENSOR_READING = true;
+bool SENSOR_READING = false;
 bool SENSORS_STABLE = false;
 bool DFPLAYER_ACTIVE = false;
 bool ROTATE_SCREEN = false;

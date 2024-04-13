@@ -622,19 +622,22 @@ void MQTTManager_::setup()
         nextApp->onCommand(onButtonCommand);
         prevApp->onCommand(onButtonCommand);
 
-        sprintf(tempID, HAtempID, macStr);
-        temperature = new HASensor(tempID);
-        temperature->setIcon(HAtempIcon);
-        temperature->setName(HAtempName);
-        temperature->setDeviceClass(HAtempClass);
-        temperature->setUnitOfMeasurement(HAtempUnit);
+        if (SENSOR_READING)
+        {
+            sprintf(tempID, HAtempID, macStr);
+            temperature = new HASensor(tempID);
+            temperature->setIcon(HAtempIcon);
+            temperature->setName(HAtempName);
+            temperature->setDeviceClass(HAtempClass);
+            temperature->setUnitOfMeasurement(HAtempUnit);
 
-        sprintf(humID, HAhumID, macStr);
-        humidity = new HASensor(humID);
-        humidity->setIcon(HAhumIcon);
-        humidity->setName(HAhumName);
-        humidity->setDeviceClass(HAhumClass);
-        humidity->setUnitOfMeasurement(HAhumUnit);
+            sprintf(humID, HAhumID, macStr);
+            humidity = new HASensor(humID);
+            humidity->setIcon(HAhumIcon);
+            humidity->setName(HAhumName);
+            humidity->setDeviceClass(HAhumClass);
+            humidity->setUnitOfMeasurement(HAhumUnit);
+        }
 
 #ifdef WITH_BATTERY
         sprintf(batID, HAbatID, macStr);

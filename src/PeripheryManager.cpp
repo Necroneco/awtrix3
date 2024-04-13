@@ -67,12 +67,15 @@ Adafruit_BMP280 bmp280;
 Adafruit_HTU21DF htu21df;
 Adafruit_SHT31 sht31;
 
-#ifdef ULANZI
+#if defined(ULANZI)
 #define USED_PHOTOCELL LightDependentResistor::GL5516
 #define PHOTOCELL_SERIES_RESISTOR 10000
-#else
+#elif defined(awtrix2_upgrade)
 #define USED_PHOTOCELL LightDependentResistor::GL5528
 #define PHOTOCELL_SERIES_RESISTOR 1000
+#else
+#define USED_PHOTOCELL LightDependentResistor::GL5528
+#define PHOTOCELL_SERIES_RESISTOR 1000000
 #endif
 
 class Mp3Notify
