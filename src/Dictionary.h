@@ -76,7 +76,7 @@ extern const char HAhumName[];
 extern const char HAhumClass[];
 extern const char HAhumUnit[];
 
-#ifdef ULANZI
+#ifdef WITH_BATTERY
 extern const char HAbatID[];
 extern const char HAbatIcon[];
 extern const char HAbatName[];
@@ -138,7 +138,7 @@ extern const char HAipAddrRID[];
 extern const char HAipAddrName[];
 extern const char HAipAddrIcon[];
 
-#ifndef awtrix2_upgrade
+#ifdef WITH_BATTERY
 extern const char BatKey[];
 extern const char BatRawKey[];
 #endif

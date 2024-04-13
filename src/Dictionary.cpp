@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include "Dictionary.h"
- 
+
 // MQTT
 const char StatsTopic[] PROGMEM = {"stats"};
 const char ButtonLeftTopic[] PROGMEM = {"stats/buttonLeft"};
@@ -143,7 +143,7 @@ const char HAipAddrIcon[] PROGMEM = {"mdi:wifi"};
 
 
 
-#ifndef awtrix2_upgrade
+#ifdef WITH_BATTERY
 const char BatKey[] PROGMEM = {"bat"};
 const char BatRawKey[] PROGMEM = {"bat_raw"};
 #endif

@@ -67,12 +67,12 @@ Adafruit_BMP280 bmp280;
 Adafruit_HTU21DF htu21df;
 Adafruit_SHT31 sht31;
 
-#ifdef awtrix2_upgrade
-#define USED_PHOTOCELL LightDependentResistor::GL5528
-#define PHOTOCELL_SERIES_RESISTOR 1000
-#else
+#ifdef ULANZI
 #define USED_PHOTOCELL LightDependentResistor::GL5516
 #define PHOTOCELL_SERIES_RESISTOR 10000
+#else
+#define USED_PHOTOCELL LightDependentResistor::GL5528
+#define PHOTOCELL_SERIES_RESISTOR 1000
 #endif
 
 class Mp3Notify
@@ -481,7 +481,7 @@ void PeripheryManager_::tick()
     if (currentMillis_BatTempHum - previousMillis_BatTempHum >= interval_BatTempHum)
     {
         previousMillis_BatTempHum = currentMillis_BatTempHum;
-#ifndef awtrix2_upgrade
+#ifdef WITH_BATTERY
         uint16_t ADCVALUE = analogRead(BATTERY_PIN);
         // Discard values that are totally out of range, especially the first value read after a reboot.
         // Meaningful values for an Ulanzi clock are in the range 400..700

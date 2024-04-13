@@ -189,7 +189,7 @@ String MenuManager_::menutext()
         case 3:
             DisplayManager.drawBMP(0, 0, icon_2075, 8, 8);
             return SHOW_HUM ? "ON" : "OFF";
-#ifndef awtrix2_upgrade
+#ifdef WITH_BATTERY
         case 4:
             DisplayManager.drawBMP(0, 0, icon_1486, 8, 8);
             return SHOW_BAT ? "ON" : "OFF";
@@ -389,7 +389,7 @@ void MenuManager_::selectButton()
         case 3:
             SHOW_HUM = !SHOW_HUM;
             break;
-#ifndef awtrix2_upgrade
+#ifdef WITH_BATTERY
         case 4:
             SHOW_BAT = !SHOW_BAT;
             break;

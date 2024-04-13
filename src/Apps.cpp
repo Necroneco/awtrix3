@@ -277,7 +277,7 @@ void HumApp(FastLED_NeoMatrix *matrix, MatrixDisplayUiState *state, int16_t x, i
     DisplayManager.matrixPrint("%");
 }
 
-#ifndef awtrix2_upgrade
+#ifdef WITH_BATTERY
 void BatApp(FastLED_NeoMatrix *matrix, MatrixDisplayUiState *state, int16_t x, int16_t y, GifPlayer *gifPlayer)
 {
     if (notifyFlag)

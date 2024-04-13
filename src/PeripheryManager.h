@@ -13,7 +13,7 @@ class PeripheryManager_
 {
 private:
     PeripheryManager_();
-#ifdef ULANZI
+#ifdef WITH_BATTERY
     const int BatReadings = 10;
     uint16_t TotalBatReadings[10];
 #endif

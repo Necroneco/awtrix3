@@ -1071,7 +1071,7 @@ void DisplayManager_::loadNativeApps()
     updateApp("Temperature", TempApp, SHOW_TEMP, 2);
     updateApp("Humidity", HumApp, SHOW_HUM, 3);
   }
-#ifdef ULANZI
+#ifdef WITH_BATTERY
   updateApp("Battery", BatApp, SHOW_BAT, 4);
 #endif
 
@@ -1501,7 +1501,7 @@ std::pair<String, AppCallback> getNativeAppByName(const String &appName)
   {
     return std::make_pair("Humidity", HumApp);
   }
-#ifdef ULANZI
+#ifdef WITH_BATTERY
   else if (appName == "Battery")
   {
     return std::make_pair("Battery", BatApp);
@@ -1595,12 +1595,16 @@ String DisplayManager_::getStats()
   StaticJsonDocument<1024> doc;
   char buffer[20];
 
-#ifdef awtrix2_upgrade
+#if defined(ULANZI)
+  doc[F("type")] = 0;
+#elif defined(awtrix2_upgrade)
   doc[F("type")] = 1;
 #else
+  doc[F("type")] = 2;
+#endif
+#ifdef WITH_BATTERY
   doc[BatKey] = BATTERY_PERCENT;
   doc[BatRawKey] = BATTERY_RAW;
-  doc[F("type")] = 0;
 #endif
   doc[LuxKey] = static_cast<int>(CURRENT_LUX);
   doc[LDRRawKey] = LDR_RAW;

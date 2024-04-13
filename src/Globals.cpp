@@ -255,7 +255,7 @@ void loadSettings()
     DATE_COLOR = Settings.getUInt("DATE_COL", 0);
     TEMP_COLOR = Settings.getUInt("TEMP_COL", 0);
     HUM_COLOR = Settings.getUInt("HUM_COL", 0);
-#ifdef ULANZI
+#ifdef WITH_BATTERY
     BAT_COLOR = Settings.getUInt("BAT_COL", 0);
 #endif
     WDC_ACTIVE = Settings.getUInt("WDCA", 0xFFFFFF);
@@ -275,7 +275,7 @@ void loadSettings()
     SHOW_HUM = Settings.getBool("HUM", true);
     MATRIX_LAYOUT = Settings.getUInt("MAT", 0);
     SCROLL_SPEED = Settings.getUInt("SSPEED", 100);
-#ifdef ULANZI
+#ifdef WITH_BATTERY
     SHOW_BAT = Settings.getBool("BAT", true);
 #endif
     SOUND_ACTIVE = Settings.getBool("SOUND", true);
@@ -308,7 +308,7 @@ void saveSettings()
     Settings.putUInt("DATE_COL", DATE_COLOR);
     Settings.putUInt("TEMP_COL", TEMP_COLOR);
     Settings.putUInt("HUM_COL", HUM_COLOR);
-#ifdef ULANZI
+#ifdef WITH_BATTERY
     Settings.putUInt("BAT_COL", BAT_COLOR);
 #endif
     Settings.putUInt("WDCA", WDC_ACTIVE);
@@ -324,7 +324,7 @@ void saveSettings()
     Settings.putBool("TEMP", SHOW_TEMP);
     Settings.putBool("HUM", SHOW_HUM);
     Settings.putUInt("SSPEED", SCROLL_SPEED);
-#ifdef ULANZI
+#ifdef WITH_BATTERY
     Settings.putBool("BAT", SHOW_BAT);
 #endif
     Settings.putBool("SOUND", SOUND_ACTIVE);
@@ -383,10 +383,12 @@ int BRIGHTNESS_PERCENT;
 uint16_t MIN_BATTERY = 475;
 uint16_t MAX_BATTERY = 665;
 
-#ifdef awtrix2_upgrade
-float TEMP_OFFSET;
-#else
+#ifdef ULANZI
 float TEMP_OFFSET = -9;
+#else
+float TEMP_OFFSET;
+#endif
+#ifdef WITH_BATTERY
 uint8_t BATTERY_PERCENT = 0;
 uint16_t BATTERY_RAW = 0;
 #endif

@@ -18,7 +18,7 @@ HALight *Matrix, *Indikator1, *Indikator2, *Indikator3 = nullptr;
 HASelect *BriMode, *transEffect = nullptr;
 HAButton *dismiss, *nextApp, *prevApp, *doUpdate = nullptr;
 HASwitch *transition = nullptr;
-#ifndef awtrix2_upgrade
+#ifdef WITH_BATTERY
 HASensor *battery = nullptr;
 #endif
 HASensor *temperature, *humidity, *illuminance, *uptime, *strength, *version, *ram, *curApp, *myOwnID, *ipAddr = nullptr;
@@ -449,7 +449,7 @@ void MQTTManager_::sendStats()
         if (HA_DISCOVERY && mqtt.isConnected())
         {
             char buffer[8];
-#ifndef awtrix2_upgrade
+#ifdef WITH_BATTERY
             snprintf(buffer, 5, "%d", BATTERY_PERCENT);
             battery->setValue(buffer);
 #endif
@@ -636,7 +636,7 @@ void MQTTManager_::setup()
         humidity->setDeviceClass(HAhumClass);
         humidity->setUnitOfMeasurement(HAhumUnit);
 
-#ifdef ULANZI
+#ifdef WITH_BATTERY
         sprintf(batID, HAbatID, macStr);
         battery = new HASensor(batID);
         battery->setIcon(HAbatIcon);
