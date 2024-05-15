@@ -21,10 +21,10 @@ HASwitch *transition = nullptr;
 #ifdef WITH_BATTERY
 HASensor *battery = nullptr;
 #endif
-HASensor *temperature, *humidity, *illuminance, *uptime, *strength, *version, *ram, *curApp, *myOwnID, *ipAddr = nullptr;
+HASensor *temperature, *humidity, *pressure, *illuminance, *uptime, *strength, *version, *ram, *curApp, *myOwnID, *ipAddr = nullptr;
 HABinarySensor *btnleft, *btnmid, *btnright = nullptr;
 bool connected;
-char matID[40], ind1ID[40], ind2ID[40], ind3ID[40], briID[40], btnAID[40], btnBID[40], btnCID[40], appID[40], tempID[40], humID[40], luxID[40], verID[40], ramID[40], upID[40], sigID[40], btnLID[40], btnMID[40], btnRID[40], transID[40], doUpdateID[40], batID[40], myID[40], sSpeed[40], effectID[40], ipAddrID[40];
+char matID[40], ind1ID[40], ind2ID[40], ind3ID[40], briID[40], btnAID[40], btnBID[40], btnCID[40], appID[40], tempID[40], humID[40], pressID[40], luxID[40], verID[40], ramID[40], upID[40], sigID[40], btnLID[40], btnMID[40], btnRID[40], transID[40], doUpdateID[40], batID[40], myID[40], sSpeed[40], effectID[40], ipAddrID[40];
 long previousMillis_Stats;
 // The getter for the instantiated singleton instance
 MQTTManager_ &MQTTManager_::getInstance()
@@ -460,6 +460,10 @@ void MQTTManager_::sendStats()
                 temperature->setValue(buffer);
                 snprintf(buffer, 5, "%.0f", CURRENT_HUM);
                 humidity->setValue(buffer);
+                if (TEMP_SENSOR_TYPE == TEMP_SENSOR_TYPE_BME680) {
+                    snprintf(buffer, sizeof(uint32_t), "%u", CURRENT_PRESSURE);
+                    pressure->setValue(buffer);
+                }
             }
 
             snprintf(buffer, 5, "%.0f", CURRENT_LUX);
@@ -637,6 +641,15 @@ void MQTTManager_::setup()
             humidity->setName(HAhumName);
             humidity->setDeviceClass(HAhumClass);
             humidity->setUnitOfMeasurement(HAhumUnit);
+
+            if (TEMP_SENSOR_TYPE == TEMP_SENSOR_TYPE_BME680) {
+                sprintf(pressID, HApresID, macStr);
+                pressure = new HASensor(pressID);
+                pressure->setIcon(HApresIcon);
+                pressure->setName(HApresName);
+                pressure->setDeviceClass(HApresClass);
+                pressure->setUnitOfMeasurement(HApresUnit);
+            }
         }
 
 #ifdef WITH_BATTERY

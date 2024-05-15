@@ -3,6 +3,7 @@
 #include "Adafruit_BME280.h"
 #include "Adafruit_BMP280.h"
 #include "Adafruit_HTU21DF.h"
+#include "Adafruit_BME680.h"
 #include "SoftwareSerial.h"
 #include <DFMiniMp3.h>
 #include <MelodyPlayer/melody_player.h>
@@ -66,6 +67,7 @@ Adafruit_BME280 bme280;
 Adafruit_BMP280 bmp280;
 Adafruit_HTU21DF htu21df;
 Adafruit_SHT31 sht31;
+Adafruit_BME680 bme680;
 
 #if defined(ULANZI)
 #define USED_PHOTOCELL LightDependentResistor::GL5516
@@ -440,6 +442,12 @@ void PeripheryManager_::setup()
             DEBUG_PRINTLN(F("SHT31 sensor detected"));
         TEMP_SENSOR_TYPE = TEMP_SENSOR_TYPE_SHT31;
     }
+    else if (bme680.begin())
+    {
+        if (DEBUG_MODE)
+            DEBUG_PRINTLN(F("BME680 sensor detected"));
+        TEMP_SENSOR_TYPE = TEMP_SENSOR_TYPE_BME680;
+    }
 
 #ifdef awtrix2_upgrade
     dfmp3.begin();
@@ -516,6 +524,12 @@ void PeripheryManager_::tick()
                 break;
             case TEMP_SENSOR_TYPE_SHT31:
                 sht31.readBoth(&CURRENT_TEMP, &CURRENT_HUM);
+                break;
+            case TEMP_SENSOR_TYPE_BME680:
+                bme680.performReading();
+                CURRENT_TEMP = bme680.temperature;
+                CURRENT_HUM = bme680.humidity;
+                CURRENT_PRESSURE = bme680.pressure;
                 break;
             default:
                 CURRENT_TEMP = 0;

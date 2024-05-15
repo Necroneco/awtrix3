@@ -76,6 +76,12 @@ extern const char HAhumName[];
 extern const char HAhumClass[];
 extern const char HAhumUnit[];
 
+extern const char HApresID[];
+extern const char HApresIcon[];
+extern const char HApresName[];
+extern const char HApresClass[];
+extern const char HApresUnit[];
+
 #ifdef WITH_BATTERY
 extern const char HAbatID[];
 extern const char HAbatIcon[];

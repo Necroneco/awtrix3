@@ -78,6 +78,12 @@ const char HAhumName[] PROGMEM = {"Humidity"};
 const char HAhumClass[] PROGMEM = {"humidity"};
 const char HAhumUnit[] PROGMEM = {"%"};
 
+const char HApresID[] PROGMEM = {"%s_pres"};
+const char HApresIcon[] PROGMEM = {"mdi:gauge"};
+const char HApresName[] PROGMEM = {"Pressure"};
+const char HApresClass[] PROGMEM = {"pressure"};
+const char HApresUnit[] PROGMEM = {"hPa"};
+
 const char HAbatID[] PROGMEM = {"%s_bat"};
 const char HAbatIcon[] PROGMEM = {"mdi:battery-90"};
 const char HAbatName[] PROGMEM = {"Battery"};

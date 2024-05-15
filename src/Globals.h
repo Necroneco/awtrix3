@@ -68,6 +68,7 @@ extern bool UPPERCASE_LETTERS;
 extern bool DFPLAYER_ACTIVE;
 extern float CURRENT_TEMP;
 extern float CURRENT_HUM;
+extern uint32_t CURRENT_PRESSURE;
 extern float CURRENT_LUX;
 extern uint16_t LDR_RAW;
 extern String CURRENT_APP;
@@ -96,6 +97,7 @@ extern bool IS_CELSIUS;
 #define TEMP_SENSOR_TYPE_HTU21DF 2
 #define TEMP_SENSOR_TYPE_BMP280 3
 #define TEMP_SENSOR_TYPE_SHT31 4
+#define TEMP_SENSOR_TYPE_BME680 5
 extern uint8_t TEMP_SENSOR_TYPE;
 
 extern bool SOUND_ACTIVE;

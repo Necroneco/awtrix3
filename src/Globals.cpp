@@ -377,6 +377,7 @@ uint8_t TEMP_SENSOR_TYPE = TEMP_SENSOR_TYPE_NONE;
 
 float CURRENT_HUM;
 float CURRENT_LUX;
+uint32_t CURRENT_PRESSURE;
 int BRIGHTNESS = 120;
 int BRIGHTNESS_PERCENT;
 
@@ -421,7 +422,7 @@ uint32_t WDC_INACTIVE;
 bool BLOCK_NAVIGATION = false;
 bool UPDATE_CHECK = false;
 float GAMMA = 0;
-bool SENSOR_READING = false;
+bool SENSOR_READING = true;
 bool SENSORS_STABLE = false;
 bool DFPLAYER_ACTIVE = false;
 bool ROTATE_SCREEN = false;
